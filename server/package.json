@@ -1,0 +1,14 @@
+{
+  "name": "BruinDoodle.io-server",
+  "version": "0.0.1",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "socket.io": "^3.1.0",
+    "uniqid": "^5.0.3"
+  }
+}
