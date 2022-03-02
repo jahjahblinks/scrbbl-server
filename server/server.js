@@ -223,6 +223,9 @@ io.on("connection", socket => {
             });
           }
           break;
+          case "Idle":
+          //We just chillin.
+          break;
         /* case "Vertical_Chop":
           if(room.painter == other.id) {
             CHAT.sendCallback(other, {
