@@ -195,59 +195,35 @@ io.on("connection", socket => {
     let room = ROOMS.getSocketRoom(other);
     if(room.round != null) {
       switch(gesture) {
-        case "Upward_Lift":
+        case "Right_Tilt":
           if(room.painter == other.id) {
-            if(room.useArtistPowerUp_1(other.id) == 1){
-              CHAT.sendCallback(other, {
-                self: `Extra time successfully added!`
-              });
-            }
-            else{
-              CHAT.sendCallback(other, {
-                self: `You don't have this power up...`
-              });
-            }
+            //room.increaseDrawSize()
+            socket.to(room.id).emit('increase_pen_size')
+            CHAT.sendCallback(other, {
+              self: `If not at maximum, brush was size increased!`
+            });
           }
           else {
-            if(room.useGuesserPowerUp_1(other.id) == 1){
-              CHAT.sendCallback(other, {
-                self: `Extra hint successfully added!`
-              });
-            }
-            else{
-              CHAT.sendCallback(other, {
-                self: `You don't have this power up...`
-              });
-            }
+            CHAT.sendCallback(other, {
+              self: `No feature implemented for this gesture as Guesser...`
+            });
           }
           break;
-        case "Clockwise_Twist":
+          case "Left_Tilt":
           if(room.painter == other.id) {
-            if(room.useArtistPowerUp_2(other.id) == 1){
-              CHAT.sendCallback(other, {
-                self: `Revealed Hint to the Guessers!`
-              });
-            }
-            else{
-              CHAT.sendCallback(other, {
-                self: `You don't have this power up...`
-              });
-            }
+            //room.decreaseDrawSize()
+            socket.to(room.id).emit('increase_pen_size')
+            CHAT.sendCallback(other, {
+              self: `If not at minimum, brush was size decreased!`
+            });
           }
           else {
-            if(room.useGuesserPowerUp_2(other.id) == 1){
-              CHAT.sendCallback(other, {
-                self: `Successfully removed hints for everyone!`
-              });
-            }
-            else{
-              CHAT.sendCallback(other, {
-                self: `You don't have this power up...`
-              });
-            }
+            CHAT.sendCallback(other, {
+              self: `No feature implemented for this gesture as Guesser...`
+            });
           }
           break;
-        case "Vertical_Chop":
+        /* case "Vertical_Chop":
           if(room.painter == other.id) {
             CHAT.sendCallback(other, {
               self: `Gesture not available for an artist...`
@@ -265,7 +241,7 @@ io.on("connection", socket => {
               });
             }
           }
-          break;
+          break; */
         default:
           console.log("Invalid Gesture");
       }

@@ -514,6 +514,16 @@ class ROOM {
     return this.roundResults[id];
   }
 
+  //Increase drawing pen size
+  increaseDrawSize(){
+    this.increaseLineSize();
+  }
+
+  //Decrease drawing pen size
+  decreaseDrawSize(){
+    this.decreaseLineSize();
+  }
+
   useArtistPowerUp_1(id){
     var valid = Math.floor(this.powerUps[id]/32);
     if(valid == 1)
@@ -565,7 +575,7 @@ class ROOM {
     }
   }
 
-  useGuesserPowerUp_2(id) {
+ /*  useGuesserPowerUp_2(id) {
     var temp = this.powerUps[id]%32;
     temp = temp%16;
     temp = temp%8;
@@ -604,8 +614,9 @@ class ROOM {
     else {
       return 0;
     }
-  }
-  useGuesserPowerUp_3(id) {
+  } */
+  
+  /* useGuesserPowerUp_3(id) {
     var temp = this.powerUps[id]%32;
     temp = temp%16;
     temp = temp%8;
@@ -622,7 +633,7 @@ class ROOM {
     else {
       return 0;
     }
-  }
+  } */
 
   displayWordHint(id){
     var index = Math.floor((Math.random() * (this.letters.length-1)) + 1);
