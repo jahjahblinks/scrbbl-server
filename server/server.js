@@ -270,19 +270,13 @@ io.on("connection", socket => {
     else if(room.round == null) {
       switch(gesture) {
           case "Forward_Tilt":
-          if(room.painter == other.id) {
-            let room = ROOMS.getSocketRoom(socket);
-            if (room.painter == socket.id && room.round == null) {
-            room.startRound(room.wordChoices[0]);
-            }
-          }
+            if(room.painter == other.id) {
+              room.startRound(room.wordChoices[0]);
+              }
           case "Backward_Tilt":
-          if(room.painter == other.id) {
-            let room = ROOMS.getSocketRoom(socket);
-            if (room.painter == socket.id && room.round == null) {
-            room.startRound(room.wordChoices[2]);
-            }
-          }
+            if(room.painter == other.id) {
+              room.startRound(room.wordChoices[2]);
+              }
           break;
           case "Idle":
           //We just chillin.
