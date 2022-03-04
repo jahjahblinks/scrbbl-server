@@ -58,6 +58,8 @@ class ROOM {
     this.drawStatus = false;
     this.hintLockActivated = 0;
     this.hintLockActivatedUser = "";
+    this.wordChoices = [];
+    //this.lineSize = 5; //default line size
   }
 
   async getWord() {
@@ -76,6 +78,7 @@ class ROOM {
       await this.getWord(),
       await this.getWord(),
     ];
+    this.wordChoices = words;
     this.setPainter();
     io.to(this.painter).emit("round_initialized", words);
     

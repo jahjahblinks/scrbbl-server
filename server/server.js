@@ -53,6 +53,9 @@ io.on("connection", socket => {
       CHAT.sendServerMessage(data.id, `${socket.name} has joined the game!`);
       let room = ROOMS.getRoom(data.id);
       if (room.round != null) {
+        /* 
+        socket.emit('getPainting', {lineHistory: ROOMS.getRoom(data.id).round.lineHistory, lineSizeHistory: ROOMS.getRoom(data.id).round.lineSizeHistory);
+        */
         socket.emit('getPainting', ROOMS.getRoom(data.id).round.lineHistory);
       }
     }
@@ -217,7 +220,22 @@ io.on("connection", socket => {
               self: `If not at minimum, brush was size decreased!`
             });
           }
+          case "Forward_Tilt":
+          if(room.painter == other.id) {
+            let room = ROOMS.getSocketRoom(socket);
+            if (room.painter == socket.id && room.round == null) {
+            room.startRound(room.wordChoices[0]);
+            }
+          }
+          case "Backward_Tilt":
+          if(room.painter == other.id) {
+            let room = ROOMS.getSocketRoom(socket);
+            if (room.painter == socket.id && room.round == null) {
+            room.startRound(room.wordChoices[2]);
+            }
+          }
           else {
+            
             CHAT.sendCallback(other, {
               self: `No feature implemented for this gesture as Guesser...`
             });

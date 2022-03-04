@@ -4,6 +4,8 @@ class ROUND {
     this.simplified = this.splitWord(this.simplifyWord(word))
     this.clock = null;
     this.lineHistory = [];
+    this.lineSizeHistory = []; //attempting to track cvx.lineWidth 
+    this.currentLineSize = 5;
   }
 
   check(word) {
@@ -57,9 +59,21 @@ class ROUND {
     this.lineHistory.push(line);
   }
 
+  //line size stuff
+  addLineSize(size) {
+    this.lineSizeHistory.push(size);
+  }
+
   clearLines() {
     this.lineHistory = [];
   }
+
+  //line size stuff
+  clearLineSizes() {
+    this.lineSizeHistory = [];
+  }
+
+
 }
 
 module.exports = ROUND;
