@@ -316,7 +316,7 @@ class ROOM {
     this.clearBoard();
     io.to(this.id).emit("round_stopped");
     CHAT.sendServerMessage(this.id, `Round finished!`);
-    CHAT.sendServerMessage(this.id, `The word was: `);
+    CHAT.sendServerMessage(this.id, `The word was: ${this.letters}`);
     io.to(this.id).emit("countdown", 0);
 
     this.numRounds++;
