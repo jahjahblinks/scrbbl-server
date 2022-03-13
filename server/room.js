@@ -113,7 +113,7 @@ class ROOM {
       if (this.TimeLeft <= 0) {
         CHAT.sendServerMessage(
           this.id,
-          `No one guessed the word: ${this.round.word}`
+          `Not everyone guessed the word: ${this.round.word}`
         );
         this.stopRound();
         clearInterval(interval);
@@ -249,10 +249,10 @@ class ROOM {
     
     //If everyone guessed correctly
     if(this.numCorrect == this.users.length - 1){
-//       CHAT.sendServerMessage(
-//         this.id,
-//         `Everyone guessed the word: ${this.round.word}`
-//       );
+      CHAT.sendServerMessage(
+        this.id,
+        `Everyone guessed the word: ${this.letters}`
+      );
       this.artist_AllCorrectStreak[this.painter] += 1;
       //if the streak is 1
       if(this.artist_AllCorrectStreak[this.painter] == 1){
