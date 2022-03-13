@@ -249,6 +249,10 @@ class ROOM {
     
     //If everyone guessed correctly
     if(this.numCorrect == this.users.length - 1){
+      CHAT.sendServerMessage(
+        this.id,
+        `Everyone guessed the word: ${this.round.word}`
+      );
       this.artist_AllCorrectStreak[this.painter] += 1;
       //if the streak is 1
       if(this.artist_AllCorrectStreak[this.painter] == 1){
