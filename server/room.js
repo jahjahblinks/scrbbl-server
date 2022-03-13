@@ -113,7 +113,7 @@ class ROOM {
       if (this.TimeLeft <= 0) {
         CHAT.sendServerMessage(
           this.id,
-          `Not everyone guessed the word: ${this.round.word}`
+          `The word was: ${this.round.word}`
         );
         this.stopRound();
         clearInterval(interval);
@@ -316,7 +316,6 @@ class ROOM {
     this.clearBoard();
     io.to(this.id).emit("round_stopped");
     CHAT.sendServerMessage(this.id, `Round finished!`);
-    CHAT.sendServerMessage(this.id, `The word was: ${this.letters}`);
     io.to(this.id).emit("countdown", 0);
 
     this.numRounds++;
