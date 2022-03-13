@@ -311,12 +311,12 @@ class ROOM {
       io.to(user).emit("get_powerups", this.powerUps[user]);
       console.log(this.powerUps[user]);
     }
-
     
-    CHAT.sendServerMessage(this.id, `Round finished!`);
-    CHAT.sendServerMessage(this.id, `The word was: ${this.round.word}`);
+    
     this.clearBoard();
     io.to(this.id).emit("round_stopped");
+    CHAT.sendServerMessage(this.id, `Round finished!`);
+    CHAT.sendServerMessage(this.id, `The word was: `);
     io.to(this.id).emit("countdown", 0);
 
     this.numRounds++;
