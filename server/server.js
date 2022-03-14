@@ -292,6 +292,23 @@ io.on("connection", socket => {
   });
 });
 
+socket.on("hand_coordinates", coords => {
+  other = socket;
+  clients.forEach(function (cl){
+    if(socket.name == (cl.name+"8")) {
+      other = cl;
+    }
+  });
+
+  let room = ROOMS.getSocketRoom(other);
+  if(room.round != null) {
+    console.log(coords);
+  }
+  else {
+    console.log("Game has not started yet...");
+  }
+});
+
 let port = process.env.PORT || 5050;
 
 http.listen(port, () => {
