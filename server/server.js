@@ -290,7 +290,7 @@ io.on("connection", socket => {
       console.log("Game has not started yet...");
     }
   });
-  
+
   socket.on("hand_coordinates", coords => {
     other = socket;
     clients.forEach(function (cl){
@@ -302,6 +302,9 @@ io.on("connection", socket => {
     let room = ROOMS.getSocketRoom(other);
     if(room.round != null) {
       console.log(coords);
+      CHAT.sendCallback(other, {
+        self: coords
+      });
     }
     else {
       console.log("Game has not started yet...");
