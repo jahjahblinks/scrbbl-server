@@ -291,6 +291,26 @@ io.on("connection", socket => {
       console.log("Game has not started yet...");
     }
   });
+
+  socket.on("hand_coordinates", coords => {
+    other = socket;
+    clients.forEach(function (cl){
+      if(socket.name == (cl.name+"8")) {
+        other = cl;
+      }
+    });
+  
+    let room = ROOMS.getSocketRoom(other);
+    if(room.round != null) {
+      console.log(coords);
+      CHAT.sendCallback(other, {
+        self: coords
+      });
+    }
+    else {
+      console.log("Game has not started yet...");
+    }
+  });
 });
 
 let port = process.env.PORT || 5050;

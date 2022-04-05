@@ -24,7 +24,6 @@ Whisk
 Cupcake
 Sleeping bag
 Bruise
-Fog
 Crust
 Battery
 Paris
@@ -307,16 +306,16 @@ Pelican
 Stingray
 Nail
 Sheep
-Stoplight
+Stop Light
 Coconut
 Crib
 Ring
 Video
 Camera
 Snowflake
-Picture Frame
+Pictureframe
 Gel
-Paint Brush
+Paintbrush
 Chalk
 Rubber Duck
 Wireless Control
@@ -326,7 +325,7 @@ Rug
 Thermometer
 Stockings
 CD
-Check Book
+Checkbook
 Vase
 Hanger
 Cookie Jar
@@ -341,7 +340,7 @@ Thread
 Bow
 Flag
 Scotch Tape
-Lamp Shade
+Lampshade
 Sketch Pad
 Tissue Box
 Shoelace
@@ -353,7 +352,7 @@ Candy Wrapper
 Toothpaste
 Sharpie
 Scarf
-Eye Liner
+Eyeliner
 Twister
 Photo Album
 Sandpaper
