@@ -59,7 +59,7 @@ class ROOM {
     this.hintLockActivated = 0;
     this.hintLockActivatedUser = "";
     this.wordChoices = [];
-    //this.lineSize = 5; //default line size
+    this.lineSize = 5; //default line size
   }
 
   async getWord() {
@@ -519,12 +519,12 @@ class ROOM {
 
   //Increase drawing pen size
   increaseDrawSize(){
-    this.increaseLineSize();
+    io.to(this.id).emit("increase_brush");
   }
 
   //Decrease drawing pen size
   decreaseDrawSize(){
-    this.decreaseLineSize();
+    io.to(this.id).emit("decrease_brush");
   }
 
   useArtistPowerUp_1(id){

@@ -201,7 +201,6 @@ io.on("connection", socket => {
         case "Right_Tilt":
           if(room.painter == other.id) {
             //room.increaseDrawSize()
-            socket.to(room.id).emit('increase_pen_size')
             CHAT.sendCallback(other, {
               self: `If not at maximum, brush was size increased!`
             });
@@ -222,17 +221,11 @@ io.on("connection", socket => {
           }
           case "Forward_Tilt":
           if(room.painter == other.id) {
-            let room = ROOMS.getSocketRoom(socket);
-            if (room.painter == socket.id && room.round == null) {
-            room.startRound(room.wordChoices[0]);
-            }
+            
           }
           case "Backward_Tilt":
           if(room.painter == other.id) {
-            let room = ROOMS.getSocketRoom(socket);
-            if (room.painter == socket.id && room.round == null) {
-            room.startRound(room.wordChoices[2]);
-            }
+           
           }
           else {
             
@@ -276,6 +269,14 @@ io.on("connection", socket => {
           case "Backward_Tilt":
             if(room.painter == other.id) {
               room.startRound(room.wordChoices[2]);
+              }
+          case "Left_Tilt":
+            if(room.painter == other.id) {
+              room.startRound(room.wordChoices[1]);
+              }
+          case "Right_Tilt":
+            if(room.painter == other.id) {
+              room.startRound(room.wordChoices[1]);
               }
           break;
           case "Idle":
