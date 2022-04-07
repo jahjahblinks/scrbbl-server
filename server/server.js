@@ -124,11 +124,6 @@ io.on("connection", socket => {
         }
     });
     let room = ROOMS.getSocketRoom(other);
-    
-    CHAT.sendCallback(other, {
-      self: coords
-    });
-    console.log(coords)
 
     if (room.painter == other.id && room.round != null) {
       if(room.getButtonStatus(other.id) == 1){
@@ -318,6 +313,18 @@ io.on("connection", socket => {
       CHAT.sendCallback(other, {
         self: "either round hasn't started or you aren't the drawer"
       });
+    }
+    if (room.painter == other.id && room.round != null) {
+      if(room.getButtonStatus(other.id) == 1){
+        if(room.getDrawStatus() == true) {
+          socket.to(room.id).emit('paint', coords);
+          room.round.addLine(coords);
+        }
+      }
+      else{
+        socket.to(room.id).emit('paint', coords);
+        room.round.addLine(coords);
+      }
     }
   });
 });
