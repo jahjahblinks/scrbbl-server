@@ -230,7 +230,7 @@ io.on("connection", socket => {
           else {
             socket.to(room.id).emit('start_speech')
             CHAT.sendCallback(other, {
-              self: `Speeched it. Maybe?`
+              self: `Speech recognition activated!`
             });
           }
           break;
