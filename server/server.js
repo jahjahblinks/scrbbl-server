@@ -124,6 +124,11 @@ io.on("connection", socket => {
         }
     });
     let room = ROOMS.getSocketRoom(other);
+    
+    CHAT.sendCallback(other, {
+      self: coords
+    });
+    
     if (room.painter == other.id && room.round != null) {
       if(room.getButtonStatus(other.id) == 1){
         if(room.getDrawStatus() == true) {
