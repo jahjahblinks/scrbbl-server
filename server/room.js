@@ -59,7 +59,7 @@ class ROOM {
     this.hintLockActivated = 0;
     this.hintLockActivatedUser = "";
     this.wordChoices = [];
-    this.lineSize = 5; //default line size
+    this.seenLineSize = 5; //default value for line size
   }
 
   async getWord() {
@@ -226,6 +226,7 @@ class ROOM {
       for (let user of this.users) {
         this.underscore_letters[user] = resStr;
         io.to(user).emit("receive_hint", this.underscore_letters[user]);
+        //add emit of current line size
       }
     } else {
       CHAT.sendCallbackID(
@@ -390,6 +391,7 @@ class ROOM {
     this.firstGuessStreak[id] = 0;
     this.roundResults[id] = 0;
     this.buttonStatus[id] = 0;
+    this.seenLineSize[id] = 0; //local parameter for what all users will see for lines?
     if(this.numRounds > 0){
       var person = this.queue.shift();
       this.queue.unshift(id);
