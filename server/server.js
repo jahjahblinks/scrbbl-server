@@ -214,7 +214,7 @@ io.on("connection", socket => {
           case "Left_Tilt":
           if(room.painter == other.id) {
             //room.decreaseDrawSize()
-            socket.to(room.id).emit('increase_pen_size');
+            socket.to(room.id).emit('increase_pen_size')
             CHAT.sendCallback(other, {
               self: `If not at minimum, brush was size decreased!`
             });
@@ -228,10 +228,10 @@ io.on("connection", socket => {
            
           }
           else {
-            socket.to(room.id).emit('start_speech');
-            // CHAT.sendCallback(other, {
-            //   self: `No feature implemented for this gesture as Guesser...`
-            // });
+            
+            CHAT.sendCallback(other, {
+              self: `No feature implemented for this gesture as Guesser...`
+            });
           }
           break;
           case "Idle":
