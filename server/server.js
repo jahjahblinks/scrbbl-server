@@ -301,14 +301,17 @@ io.on("connection", socket => {
     });
   
     let room = ROOMS.getSocketRoom(other);
-    if(room.round != null) {
+    if(room.round != null && other.id == room.painter) {
       console.log(coords);
       CHAT.sendCallback(other, {
         self: coords
       });
     }
     else {
-      console.log("Game has not started yet...");
+      console.log("oop hands should not be getting tracked");
+      CHAT.sendCallback(other, {
+        self: "either round hasn't started or you aren't the drawer"
+      });
     }
   });
 });
