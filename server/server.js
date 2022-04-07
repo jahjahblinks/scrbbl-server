@@ -128,7 +128,8 @@ io.on("connection", socket => {
     CHAT.sendCallback(other, {
       self: coords
     });
-    
+    console.log(coords)
+
     if (room.painter == other.id && room.round != null) {
       if(room.getButtonStatus(other.id) == 1){
         if(room.getDrawStatus() == true) {
