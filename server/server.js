@@ -201,7 +201,8 @@ io.on("connection", socket => {
       switch(gesture) {
         case "Right_Tilt":
           if(room.painter == other.id) {
-            //room.increaseDrawSize()
+            room.increaseDrawSize()
+            //socket.to(room.id).emit('increase_pen_size')
             CHAT.sendCallback(other, {
               self: `If not at maximum, brush was size increased!`
             });
@@ -214,8 +215,8 @@ io.on("connection", socket => {
           break;
           case "Left_Tilt":
           if(room.painter == other.id) {
-            //room.decreaseDrawSize()
-            socket.to(room.id).emit('increase_pen_size')
+            room.decreaseDrawSize()
+            //socket.to(room.id).emit('decrease_pen_size')
             CHAT.sendCallback(other, {
               self: `If not at minimum, brush was size decreased!`
             });

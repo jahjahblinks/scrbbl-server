@@ -336,6 +336,7 @@ class ROOM {
   }
 
   clearBoard() {
+    this.lineSize = 5;
     if (this.round != null) {
       this.round.clearLines();
     }
@@ -525,11 +526,13 @@ class ROOM {
   //Increase drawing pen size
   increaseDrawSize(){
     io.to(this.id).emit("increase_brush");
+    CHAT.sendServerMessage(this.id, `You somehow called the 'increaseDrawSize' function in room.js`);
   }
 
   //Decrease drawing pen size
   decreaseDrawSize(){
     io.to(this.id).emit("decrease_brush");
+    CHAT.sendServerMessage(this.id, `You somehow called the 'increaseDrawSize' function in room.js`);
   }
 
   useArtistPowerUp_1(id){
