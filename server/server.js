@@ -140,6 +140,7 @@ io.on("connection", socket => {
   });
 
   socket.on("clear", () => {
+    socket.to(room.id).emit('reset_pen_size');
     other = socket;
     clients.forEach(function (cl) {
       if (socket.name==(cl.name+"7")){
