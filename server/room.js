@@ -238,7 +238,7 @@ class ROOM {
   stopRound() {
     this.round = null;
     io.to(this.id).emit("reset_pen_size");
-    this.Whiteboard.resetLineSize();
+    //this.Whiteboard.resetLineSize();
 
     if(this.TimeLeft >= Math.floor(this.roundTime/2)){
       var temp = this.powerUps[this.painter]%32;
