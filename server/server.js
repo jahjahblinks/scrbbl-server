@@ -149,7 +149,7 @@ io.on("connection", socket => {
     let room = ROOMS.getSocketRoom(other);
     if (room.painter == other.id && room.round != null) {
       room.clearBoard();
-      socket.to(room.id).emit('reset_pen_size');
+      //socket.to(room.id).emit('reset_pen_size');
     }
   });
 

@@ -237,6 +237,8 @@ class ROOM {
 
   stopRound() {
     this.round = null;
+    io.to(this.id).emit("reset_pen_size");
+    this.Whiteboard.resetLineSize();
 
     if(this.TimeLeft >= Math.floor(this.roundTime/2)){
       var temp = this.powerUps[this.painter]%32;
@@ -521,20 +523,6 @@ class ROOM {
 
   userGuessStatus(id) {
     return this.roundResults[id];
-  }
-
-  //Increase drawing pen size
-  increaseDrawSize(){
-    //io.to(this.id).emit("increase_brush");
-    io.to(this.id).emit("increase_pen_size");
-    CHAT.sendServerMessage(this.id, `You somehow called the 'increaseDrawSize' function in room.js`);
-  }
-
-  //Decrease drawing pen size
-  decreaseDrawSize(){
-    //io.to(this.id).emit("decrease_brush");
-    io.to(this.id).emit("decrease_pen_size");
-    CHAT.sendServerMessage(this.id, `You somehow called the 'increaseDrawSize' function in room.js`);
   }
 
   useArtistPowerUp_1(id){
