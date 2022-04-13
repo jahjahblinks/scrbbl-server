@@ -336,7 +336,7 @@ class ROOM {
   }
 
   clearBoard() {
-    this.lineSize = 5;
+    //this.lineSize = 5;
     if (this.round != null) {
       this.round.clearLines();
     }
