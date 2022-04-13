@@ -140,7 +140,6 @@ io.on("connection", socket => {
   });
 
   socket.on("clear", () => {
-    //socket.to(room.id).emit('reset_pen_size');
     other = socket;
     clients.forEach(function (cl) {
       if (socket.name==(cl.name+"7")){
@@ -150,6 +149,7 @@ io.on("connection", socket => {
     let room = ROOMS.getSocketRoom(other);
     if (room.painter == other.id && room.round != null) {
       room.clearBoard();
+      socket.to(room.id).emit('reset_pen_size');
     }
   });
 
