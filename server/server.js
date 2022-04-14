@@ -304,10 +304,10 @@ io.on("connection", socket => {
         other = cl;
       }
     });
-  
+    
     let room = ROOMS.getSocketRoom(other);
     if(room.round != null && other.id == room.painter) {
-      console.log(coords);
+      console.log(inputCoords);
       CHAT.sendCallback(other, {
         self: coords
       });
@@ -321,13 +321,11 @@ io.on("connection", socket => {
     if (room.painter == other.id && room.round != null) {
       if(room.getButtonStatus(other.id) == 1){
         if(room.getDrawStatus() == true) {
-          socket.to(room.id).emit('paint', coords);
-          room.round.addLine(coords);
+          socket.to(room.id).emit('handCoords', coords);
         }
       }
       else{
-        socket.to(room.id).emit('paint', coords);
-        room.round.addLine(coords);
+        socket.to(room.id).emit('handCoords', coords);
       }
     }
   });
