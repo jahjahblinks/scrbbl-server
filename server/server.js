@@ -304,7 +304,7 @@ io.on("connection", socket => {
         other = cl;
       }
     });
-    
+    let obj = {x : coords[0], y : coords[1]};
     let room = ROOMS.getSocketRoom(other);
     if(room.round != null && other.id == room.painter) {
       console.log(inputCoords);
@@ -321,11 +321,11 @@ io.on("connection", socket => {
     if (room.painter == other.id && room.round != null) {
       if(room.getButtonStatus(other.id) == 1){
         if(room.getDrawStatus() == true) {
-          socket.to(room.id).emit('handCoords', coords);
+          socket.to(room.id).emit('handCoords', obj);
         }
       }
       else{
-        socket.to(room.id).emit('handCoords', coords);
+        socket.to(room.id).emit('handCoords', obj);
       }
     }
   });
