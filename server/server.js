@@ -202,26 +202,26 @@ io.on("connection", socket => {
       switch(gesture) {
         case "Right_Tilt":
           if(room.painter == other.id) {
-            socket.to(room.id).emit('increase_pen_size');
+            socket.to(room.id).emit('increase_pen_size', getSize);
             //room.increaseDrawSize()
             //socket.to(room.id).emit('increase_pen_size')
             CHAT.sendCallback(other, {
-              self: `If not at maximum, brush was size increased!`
+              self: `Brush size set to` + toString(getSize)
             });
           }
           else {
             CHAT.sendCallback(other, {
-              self: `No feature implemented for this gesture as Guesser...`
+              self: `No feature implemented for this gesture...`
             });
           }
           break;
           case "Left_Tilt":
           if(room.painter == other.id) {
             //room.decreaseDrawSize()
-            socket.to(room.id).emit('decrease_pen_size');
+            socket.to(room.id).emit('decrease_pen_size', getSize);
             //socket.to(room.id).emit('decrease_pen_size')
             CHAT.sendCallback(other, {
-              self: `If not at minimum, brush was size decreased!`
+              self: `Brush size set to` + toString(getSize)
             });
           }
           case "Forward_Tilt":

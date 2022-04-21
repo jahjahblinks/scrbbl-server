@@ -632,7 +632,7 @@ class ROOM {
     }
   } */
   
-  /* useGuesserPowerUp_3(id) {
+  freeGuesserPoints(id) {
     var temp = this.powerUps[id]%32;
     temp = temp%16;
     temp = temp%8;
@@ -649,7 +649,7 @@ class ROOM {
     else {
       return 0;
     }
-  } */
+  } 
 
   displayWordHint(id){
     var index = Math.floor((Math.random() * (this.letters.length-1)) + 1);
