@@ -293,6 +293,13 @@ io.on("connection", socket => {
   });
 
   socket.on("update_brush_size", size => {
+    other = socket;
+    clients.forEach(function (cl){
+      if(socket.name == (cl.name+"8")) {
+        other = cl;
+      }
+    });
+    
     CHAT.sendCallback(other, {
       self: `Brush size set to` + toString(size)
     });
