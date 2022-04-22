@@ -202,29 +202,21 @@ io.on("connection", socket => {
       switch(gesture) {
         case "Right_Tilt":
           if(room.painter == other.id) {
-            getSize = 0;
-            socket.to(room.id).emit('increase_pen_size');
-            socket.on("update_brush_size", size => {
-              CHAT.sendCallback(other, {
-                self: `Brush size set to` + toString(size)
-              });
-            });       
+            socket.to(room.id).emit('increase_pen_size');      
           }
           else {
             CHAT.sendCallback(other, {
-              self: `No feature implemented for this gesture...`
+              self: `There's no IMU feature in your role!`
             });
           }
           break;
           case "Left_Tilt":
           if(room.painter == other.id) {
-            //room.decreaseDrawSize()
-            getSize = 0;
             socket.to(room.id).emit('decrease_pen_size');
-            socket.on("update_brush_size", size => {
-              CHAT.sendCallback(other, {
-                self: `Brush size set to` + toString(size)
-              });
+          }
+          else {
+            CHAT.sendCallback(other, {
+              self: `There's no IMU feature in your role!`
             });
           }
           case "Forward_Tilt":
@@ -298,6 +290,12 @@ io.on("connection", socket => {
     else {
       console.log("Game has not started yet...");
     }
+  });
+
+  socket.on("update_brush_size", size => {
+    CHAT.sendCallback(other, {
+      self: `Brush size set to` + toString(size)
+    });
   });
 
   socket.on("hand_coordinates", coords => {
