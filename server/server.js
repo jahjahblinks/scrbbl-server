@@ -202,12 +202,13 @@ io.on("connection", socket => {
       switch(gesture) {
         case "Right_Tilt":
           if(room.painter == other.id) {
-            socket.to(room.id).emit('increase_pen_size', getSize);
-            //room.increaseDrawSize()
-            //socket.to(room.id).emit('increase_pen_size')
-            CHAT.sendCallback(other, {
-              self: `Brush size set to` + toString(getSize)
-            });
+            getSize = 0;
+            socket.to(room.id).emit('increase_pen_size');
+            socket.on("update_brush_size", size => {
+              CHAT.sendCallback(other, {
+                self: `Brush size set to` + toString(size)
+              });
+            });       
           }
           else {
             CHAT.sendCallback(other, {
@@ -218,10 +219,12 @@ io.on("connection", socket => {
           case "Left_Tilt":
           if(room.painter == other.id) {
             //room.decreaseDrawSize()
-            socket.to(room.id).emit('decrease_pen_size', getSize);
-            //socket.to(room.id).emit('decrease_pen_size')
-            CHAT.sendCallback(other, {
-              self: `Brush size set to` + toString(getSize)
+            getSize = 0;
+            socket.to(room.id).emit('decrease_pen_size');
+            socket.on("update_brush_size", size => {
+              CHAT.sendCallback(other, {
+                self: `Brush size set to` + toString(size)
+              });
             });
           }
           case "Forward_Tilt":

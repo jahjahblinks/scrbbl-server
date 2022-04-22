@@ -526,6 +526,7 @@ class ROOM {
     return this.roundResults[id];
   }
 
+  /* I dont think I need this anymore
   //Increase drawing pen size
   increaseDrawSize(){
     //io.to(this.id).emit("increase_brush");
@@ -539,7 +540,7 @@ class ROOM {
     io.to(this.id).emit("decrease_pen_size");
     CHAT.sendServerMessage(this.id, `You somehow called the 'increaseDrawSize' function in room.js`);
   }
-
+  */
   useArtistPowerUp_1(id){
     var valid = Math.floor(this.powerUps[id]/32);
     if(valid == 1)
