@@ -202,7 +202,11 @@ io.on("connection", socket => {
       switch(gesture) {
         case "Right_Tilt":
           if(room.painter == other.id) {
-            socket.to(room.id).emit('increase_pen_size');      
+            socket.to(room.id).emit('increase_pen_size');  
+            size = room.Whiteboard.getUpdatedLineSize();
+            CHAT.sendCallback(other, {
+              self: toString(size)
+            });
           }
           else {
             CHAT.sendCallback(other, {
@@ -299,7 +303,7 @@ io.on("connection", socket => {
         other = cl;
       }
     });
-    
+
     CHAT.sendCallback(other, {
       self: `Brush size set to` + toString(size)
     });
