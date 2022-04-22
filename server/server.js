@@ -203,9 +203,8 @@ io.on("connection", socket => {
         case "Right_Tilt":
           if(room.painter == other.id) {
             socket.to(room.id).emit('increase_pen_size');  
-            size = room.Whiteboard.getUpdatedLineSize();
             CHAT.sendCallback(other, {
-              self: toString(size)
+              self: 'Brush size increased.'
             });
           }
           else {
@@ -217,6 +216,9 @@ io.on("connection", socket => {
           case "Left_Tilt":
           if(room.painter == other.id) {
             socket.to(room.id).emit('decrease_pen_size');
+            CHAT.sendCallback(other, {
+              self: 'Brush size decreased.'
+            });
           }
           else {
             CHAT.sendCallback(other, {
@@ -296,6 +298,7 @@ io.on("connection", socket => {
     }
   });
 
+  /* IDK IF THIS WORKS
   socket.on("update_brush_size", size => {
     other = socket;
     clients.forEach(function (cl){
@@ -308,7 +311,7 @@ io.on("connection", socket => {
       self: `Brush size set to` + toString(size)
     });
   });
-
+*/
   socket.on("hand_coordinates", coords => {
     other = socket;
     clients.forEach(function (cl){
