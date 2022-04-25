@@ -220,7 +220,7 @@ io.on("connection", socket => {
             }
           }
           break;
-          
+
           case "Left_Tilt": //Left Gesture
           if(room.painter == other.id) {
             socket.to(room.id).emit('decrease_pen_size');
@@ -246,6 +246,18 @@ io.on("connection", socket => {
           if(room.painter == other.id) {
             
           }
+          else {
+            if(room.useGuesserPowerUp_1(other.id) == 1){
+              CHAT.sendCallback(other, {
+                self: `Extra word hint provided!`
+              });
+            }
+            else{
+              CHAT.sendCallback(other, {
+                self: `You don't have this power up...`
+              });
+            }
+          }
           break;
 
           case "Backward_Tilt": //Backward Gesture
@@ -263,27 +275,10 @@ io.on("connection", socket => {
           case "Idle": //Idle Gesture
           //We just chillin.
           break;
-        /* case "Vertical_Chop":
-          if(room.painter == other.id) {
-            CHAT.sendCallback(other, {
-              self: `Gesture not available for an artist...`
-            });
-          }
-          else {
-            if(room.useGuesserPowerUp_3(other.id) == 1){
-              CHAT.sendCallback(other, {
-                self: `Extra 💯 points will be added to your score!`
-              });
-            }
-            else{
-              CHAT.sendCallback(other, {
-                self: `You don't have this power up...`
-              });
-            }
-          }
-          break; */
-        default:
+
+          default:
           console.log("Invalid Gesture");
+          break;
       }
     }
     else if(room.round == null) {
