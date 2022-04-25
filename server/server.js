@@ -200,7 +200,7 @@ io.on("connection", socket => {
     let room = ROOMS.getSocketRoom(other);
     if(room.round != null) {
       switch(gesture) {
-        case "Right_Tilt":
+        case "Right_Tilt": //Right Gesture
           if(room.painter == other.id) {
             socket.to(room.id).emit('increase_pen_size');  
             CHAT.sendCallback(other, {
@@ -208,12 +208,20 @@ io.on("connection", socket => {
             });
           }
           else {
-            CHAT.sendCallback(other, {
-              self: `There's no IMU feature in your role!`
-            });
+            if(room.useGuesserPowerUp_3(other.id) == 1){
+              CHAT.sendCallback(other, {
+                self: `Extra 100 points will be added to your score!`
+              });
+            }
+            else{
+              CHAT.sendCallback(other, {
+                self: `You don't have this power up...`
+              });
+            }
           }
           break;
-          case "Left_Tilt":
+          
+          case "Left_Tilt": //Left Gesture
           if(room.painter == other.id) {
             socket.to(room.id).emit('decrease_pen_size');
             CHAT.sendCallback(other, {
@@ -221,15 +229,26 @@ io.on("connection", socket => {
             });
           }
           else {
-            CHAT.sendCallback(other, {
-              self: `There's no IMU feature in your role!`
-            });
+            if(room.useGuesserPowerUp_3(other.id) == 1){
+              CHAT.sendCallback(other, {
+                self: `Extra 100 points will be added to your score!`
+              });
+            }
+            else{
+              CHAT.sendCallback(other, {
+                self: `You don't have this power up...`
+              });
+            }
           }
-          case "Forward_Tilt":
+          break;
+
+          case "Forward_Tilt": //Forward Gesture
           if(room.painter == other.id) {
             
           }
-          case "Backward_Tilt":
+          break;
+
+          case "Backward_Tilt": //Backward Gesture
           if(room.painter == other.id) {
            
           }
@@ -240,7 +259,8 @@ io.on("connection", socket => {
             });
           }
           break;
-          case "Idle":
+
+          case "Idle": //Idle Gesture
           //We just chillin.
           break;
         /* case "Vertical_Chop":

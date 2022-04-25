@@ -634,7 +634,7 @@ class ROOM {
     }
   } */
   
-  freeGuesserPoints(id) {
+  useGuesserPowerUp_3(id) {
     var temp = this.powerUps[id]%32;
     temp = temp%16;
     temp = temp%8;
