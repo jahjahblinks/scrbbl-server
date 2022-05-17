@@ -266,9 +266,9 @@ io.on("connection", socket => {
           }
           else {
             socket.to(room.id).emit('start_speech');
-            CHAT.sendCallback(other, {
-              self: `Speech recognition activated!`
-            });
+            //CHAT.sendCallback(other, {
+            //  self: `Speech recognition activated!`
+            //});
           }
           break;
 
@@ -287,14 +287,17 @@ io.on("connection", socket => {
             if(room.painter == other.id) {
               room.startRound(room.wordChoices[0]);
               }
+              break;
           case "Backward_Tilt":
             if(room.painter == other.id) {
               room.startRound(room.wordChoices[2]);
               }
+              break;
           case "Left_Tilt":
             if(room.painter == other.id) {
               room.startRound(room.wordChoices[1]);
               }
+            break;
           case "Right_Tilt":
             if(room.painter == other.id) {
               room.startRound(room.wordChoices[1]);
