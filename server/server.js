@@ -266,9 +266,6 @@ io.on("connection", socket => {
           }
           else {
             socket.to(room.id).emit('start_speech');
-            //CHAT.sendCallback(other, {
-            //  self: `Speech recognition activated!`
-            //});
           }
           break;
 
