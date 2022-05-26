@@ -115,6 +115,51 @@ io.on("connection", socket => {
       }
     }
   });
+  
+  socket.on("send_message_tutorial", msg => {
+    other = socket;
+    console.log(msg)
+      clients.forEach(function (cl) {
+        if (socket.name==(cl.name+"7")){
+          other = cl;
+          }
+    });
+    let room = ROOMS.getSocketRoom(other);
+    if (room) {
+
+      if (room.round != null) {
+        // Checking if the message is correct
+        if (room.round.check(msg)) {
+          if(room.userGuessStatus(other.id) == 0){
+            ROOMS.givePoints(other);
+            CHAT.sendCallback(other, {
+              self: `Congratulations! You've guessed the word!`
+            });
+            CHAT.sendServerMessage(room.id, `${other.name} guessed the word`);
+            if(room.getNumGuessed() == (room.getUsers().length - 1))
+            {
+              room.stopRound();
+            }
+          }
+          else{
+            CHAT.sendCallback(other, {
+              self: `You cannot guess more than once`
+            });
+          }
+        } else {
+          CHAT.sendMessage(room.id, {
+            msg,
+            sender: other.name
+          });
+          if (room.round.isClose(msg)) {
+            CHAT.sendCallback(other, {
+              self: `You're so close!`
+            });
+          }
+        }
+      }
+    }
+  });
 
   socket.on("paint", (coords) => {
     other = socket;
