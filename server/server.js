@@ -203,13 +203,16 @@ io.on("connection", socket => {
   socket.on("clear_tutorial", () => {
     other = socket;
     clients.forEach(function (cl) {
-      if (socket.name==(cl.name+"8")){
+      if (socket.name==(cl.name+"7")){
         other = cl;
         }
     });
     console.log("clear board tutorial");
     let room = ROOMS.getSocketRoom(other);
-    room.clearBoard();
+    if (room.painter == other.id) {
+      room.clearBoard();
+      //socket.to(room.id).emit('reset_pen_size');
+    }
   });
   
   socket.on("word_chosen", word => {
