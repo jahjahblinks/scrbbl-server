@@ -203,7 +203,7 @@ io.on("connection", socket => {
   socket.on("clear_tutorial", () => {
     other = socket;
     clients.forEach(function (cl) {
-      if (socket.name==(cl.name+"7")){
+      if (socket.name==(cl.name+"9")){
         other = cl;
         }
     });
