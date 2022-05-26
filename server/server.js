@@ -207,6 +207,7 @@ io.on("connection", socket => {
         other = cl;
         }
     });
+    console.log("clear board tutorial");
     let room = ROOMS.getSocketRoom(other);
     room.clearBoard();
   });
