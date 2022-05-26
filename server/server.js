@@ -124,10 +124,12 @@ io.on("connection", socket => {
           other = cl;
           }
     });
+    
+    console.log("sending message for tutorial");
     let room = ROOMS.getSocketRoom(other);
     if (room) {
 
-      if (room.round != null) {
+      if (true) {
         // Checking if the message is correct
         if (room.round.check(msg)) {
           if(room.userGuessStatus(other.id) == 0){
