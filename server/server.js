@@ -200,6 +200,17 @@ io.on("connection", socket => {
     }
   });
 
+  socket.on("clear_tutorial", () => {
+    other = socket;
+    clients.forEach(function (cl) {
+      if (socket.name==(cl.name+"7")){
+        other = cl;
+        }
+    });
+    let room = ROOMS.getSocketRoom(other);
+    room.clearBoard();
+  });
+  
   socket.on("word_chosen", word => {
     let room = ROOMS.getSocketRoom(socket);
     if (room.painter == socket.id && room.round == null) {
